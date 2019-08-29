@@ -1,4 +1,5 @@
 import React from 'react';
+import { evaluate } from 'mathjs'
 import './App.css';
 
 class App extends React.Component {
@@ -67,8 +68,7 @@ class App extends React.Component {
     let q = this.state.query;
     if(q && this.rightCharacter(q[q.length-1])!==1)
     {
-      q = eval(q);
-      // console.log(typeof(q));
+      q = evaluate(q);
       this.setState({ query : String(q) });
     }
   }
@@ -94,50 +94,98 @@ class App extends React.Component {
     }
  }
 
+ clearquery()
+ {
+    this.setState({ query : "" });
+ }
+
   render()
   {
     return (
       <div className="App">
         <div className="row">
-         <div className="col-sm-3"></div>
-         <div className="col-sm-6">
+         <div className="col-sm-4"></div>
+         <div className="col-sm-4">
            <div className="row">
-            <div className="col-sm-12">
-              <input type="text" placeholder="insert your expression" 
+            <div className="col-sm-12 main-div">
+            <input type="text" placeholder="insert your expression" 
                 value = {this.state.query}
                 onKeyDown={ (e) => this.keyPress(e) }
                 onChange = { (e) => this.add1(e.target.value) }
-              />
-            </div>
-            <div className="col-sm-12">
-              <button className="btn btn-primary" onClick = { e => this.addquery("1") }>1</button>
-              <button className="btn btn-primary" onClick = { e => this.addquery("2") }>2</button>
-              <button className="btn btn-primary" onClick = { e => this.addquery("3") }>3</button>
-              <button className="btn btn-primary" onClick = { e => this.add1(this.state.query + "+") }>+</button>
-            </div>
-            <div className="col-sm-12">
-              <button className="btn btn-primary" onClick = { e => this.addquery("4") }>4</button>
-              <button className="btn btn-primary" onClick = { e => this.addquery("5") }>5</button>
-              <button className="btn btn-primary" onClick = { e => this.addquery("6") }>6</button>
-              <button className="btn btn-primary" onClick = { e => this.add1(this.state.query + "-") }>-</button>
-            </div>
-            <div className="col-sm-12">
-              <button className="btn btn-primary" onClick = { e => this.addquery("7") }>7</button>
-              <button className="btn btn-primary" onClick = { e => this.addquery("8") }>8</button>
-              <button className="btn btn-primary" onClick = { e => this.addquery("9") }>9</button>
-              <button className="btn btn-primary" onClick = { e => this.add1(this.state.query + "*") }>*</button>
-            </div>
-            <div className="col-sm-12">
-              <button className="btn btn-primary" onClick = { e => this.giveresult() }>=</button>
-              <button className="btn btn-primary" onClick = { e => this.addquery("0") }>0</button>
-              <button className="btn btn-primary" onClick = { e => this.trimquery() }>rm</button>
-              <button className="btn btn-primary" onClick = { e => this.add1(this.state.query + "/") }>/</button>
+            />
+              <table className="table table-striped table-bordered">
+                <tbody>
+                  <tr>
+                    <td onClick = { e => this.addquery("1") }>
+                      1
+                    </td>
+                    <td onClick = { e => this.addquery("2") }>
+                      2
+                    </td>
+                    <td onClick = { e => this.addquery("3") }>
+                      3
+                    </td>
+                    <td onClick = { e => this.add1(this.state.query + "+") }>
+                      +
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td onClick = { e => this.addquery("4") }>
+                      4
+                    </td>
+                    <td onClick = { e => this.addquery("5") }>
+                      5
+                    </td>
+                    <td onClick = { e => this.addquery("6") }>
+                      6
+                    </td>
+                    <td onClick = { e => this.add1(this.state.query + "-") }>
+                      -
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td onClick = { e => this.addquery("7") }>
+                      7
+                    </td>
+                    <td onClick = { e => this.addquery("8") }>
+                      8
+                    </td>
+                    <td onClick = { e => this.addquery("9") }>
+                      9
+                    </td>
+                    <td onClick = { e => this.add1(this.state.query + "*") }>
+                      *
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td onClick = { e => this.giveresult() }>
+                      =
+                    </td>
+                    <td onClick = { e => this.addquery("0") }>
+                      0
+                    </td>
+                    <td onClick = { e => this.addquery(".") }>
+                      .
+                    </td>
+                    <td onClick = { e => this.add1(this.state.query + "/") }>
+                      /
+                    </td>
+                  </tr>
+                </tbody>
+
+            </table>
+            <div className="col-sm-12" onClick = { e => this.clearquery() }>
+                  clear
             </div>
            </div>
          </div>
-         <div className="col-sm-3"></div>  
+         <div className="col-sm-4"></div>  
         </div>
         
+      </div>
       </div>
     )
   }

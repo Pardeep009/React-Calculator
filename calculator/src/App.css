@@ -1,6 +1,22 @@
 .App {
   margin-top: 10%;
   text-align: center;
+  /* cursor: pointer; */
+}
+
+input {
+  width: 100%;
+  border: none;
+  text-align: right;
+}
+
+.main-div {
+  cursor: pointer;
+}
+
+.table td {
+  vertical-align: 0%;
+  /* cursor: pointer; */
 }
 
 .App-logo {
