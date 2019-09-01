@@ -1,22 +1,66 @@
+html, body { margin: 0; padding: 0; height:100%; }
+
+body  {
+	background: linear-gradient(#e66465, #9198e5);
+}
+
 .App {
   margin-top: 10%;
   text-align: center;
   /* cursor: pointer; */
 }
 
-input {
-  width: 100%;
-  border: none;
-  text-align: right;
+.action {
+	background-color: ghostwhite;
+	border: 1px solid #dee2e6;
+	height: 50px;
+    padding-top: 15px;
+}
+
+.message {
+	text-align: center;
+    padding-right: 4%;
+    padding-left: 4%;
+}
+
+.table {
+	margin-bottom : 0;
+	vertical-align: 0%;
 }
 
 .main-div {
   cursor: pointer;
+  width : 80%;
 }
 
-.table td {
-  vertical-align: 0%;
-  /* cursor: pointer; */
+.evaluate {
+	background-color : #F78D6C;
+}
+
+.Keypad {
+	padding : 0;
+}
+
+.screen {
+	padding-top : 70px;
+	color : white;
+	text-align: right;
+	height : 100px;
+	background-color : #333A4D;
+}
+
+.operators {
+	background-color : #F9A070;
+}
+
+.operand {
+	background-color : #EEEEEE;
+}
+
+@media only screen and (max-width: 768px) {
+  .main-div {
+    width: 100%;
+  }
 }
 
 .App-logo {
