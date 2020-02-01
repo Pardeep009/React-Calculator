@@ -45,7 +45,7 @@
 								clear
 							</div>
 							<div className="col-sm-6 action" onClick = {this.props.trimquery}>
-								deletee
+								erase
 							</div>
 					   </div>
 				</div>
