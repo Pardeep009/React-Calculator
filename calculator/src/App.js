@@ -13,13 +13,9 @@
 		this.state = {
 		  query : "",
 		}
-		this.addquery = this.addquery.bind(this); 
-		this.clearquery = this.clearquery.bind(this);
-		this.trimquery = this.trimquery.bind(this);
 	  } 
 	  
-	  rightCharacter(value)
-	  {
+	  rightCharacter = (value) => {
 		  switch(value)
 		  {
 			case "0" :
@@ -50,18 +46,17 @@
 		  }
 	  }
 
-	  addquery(value)
-	  {
+	  addquery = (value) => {
 		let type = this.rightCharacter(value);
 		if(type === 2)
 		{
-			let q = this.state.query;
-			q = q + value;
-			this.setState({ query : q });
+			let query = this.state.queryuery;
+			query = query + value;
+			this.setState({ queryuery : query });
 		}
 		else if(type === 1)
 		{
-			this.add1(this.state.query + value);
+			this.addOperator(this.state.query + value);
 		}
 		else if(type === 0)
 		{
@@ -70,8 +65,7 @@
 	  }
 
 
-	  add1(value)
-	  {
+	  addOperator = (value) => {
 		let k = this.rightCharacter(value[value.length-1]);
 		if(k === 2)
 		{
@@ -86,40 +80,37 @@
 		}
 	  }
 
-	  giveresult()
-	  {
-		let q = this.state.query;
-		if(q && this.rightCharacter(q[q.length-1])!==1)
+	  giveresult = () => {
+		let query = this.state.queryuery;
+		if(query && this.rightCharacter(query[query.length-1])!==1)
 		{
 			try {
-				q = evaluate(q);
+				query = evaluate(query);
 			}
 			catch(err) 
             { 
                 alert("Math Error"); 
-            } 
-            if (q===undefined) 
+			}
+            if (query===undefined || query==Infinity) 
 			{
 				alert("Math Error");
 			}
-			else{
-				this.setState({ query : String(q) });
+			else {
+				this.setState({ query : String(query) });
 			}
 		}
 	  }
 
-	 trimquery(e)
-	 {
-		let q = this.state.query;
-		if(q.length)
+	 trimquery = (e) => {
+		let query = this.state.query;
+		if(query.length)
 		{
-		  q = q.slice(0,-1);
-		  this.setState({ query : q });
+			query = query.slice(0,-1);
+		  this.setState({ query : query });
 		}
 	 }
 
-	 clearquery(e)
-	 {
+	 clearquery = (e) => {
 		this.setState({ query : "" });
 	 }
 	 
@@ -150,5 +141,3 @@
 	}
 
 	export default Calculator;
-
-// <input type="text" placeholder="insert your expression" // value = {this.state.query} // onKeyDown={ (e) => this.keyPress(e) } // onChange = { (e) => this.add1(e.target.value) } // />
